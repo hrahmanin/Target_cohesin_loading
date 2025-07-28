@@ -1,4 +1,4 @@
-# Chromatin loop extrusion with dynamic boundaries
+# Target chromatin loop extrusion with dynamic boundaries
 
 <!--![Alt Text](./output/cartoons/cropped_output_mult_seq_bar_combination_size.gif)
 **Illustration**: This gif demonstrates how extruders (yellow) can sequentially bypass a series of dynamic barriers (red). 
