@@ -168,6 +168,7 @@ class LEFTranslocatorDynamicBoundary(LEFTranslocator):
             pauseProb,
             stallProbLeft,
             stallProbRight,
+            **kwargs
         )
 
         if initalize_at_equilibrium_occupancy:
