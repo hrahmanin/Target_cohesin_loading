@@ -25,10 +25,10 @@ def get_requirements(path):
 install_requires = get_requirements("requirements.txt")
 
 setup(
-    name="dynamic-extrusion-boundaries",
+    name="Target_cohesin_loading",
     version=VERSION,
     description=DESCRIPTION,
-    #url="https://github.com/Fudenberg-Research-Group/dynamic_extrusion_boundaries",
+    #url="https://github.com/Fudenberg-Research-Group/Target_cohesin_loading",
     url="https://github.com/hrahmanin/Target_cohesin_loading/",
     author="Hadi Rahmaninejad",
     author_email="rahmanin@usc.edu",
