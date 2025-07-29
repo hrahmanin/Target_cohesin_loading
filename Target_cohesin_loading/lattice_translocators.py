@@ -22,7 +22,7 @@ class LEFTranslocator:
         self.deathProb = deathProb
         self.pause = pauseProb
 
-        self.initial_pause = kwargs.get("initial_pause", 0.5)  # default value if not provided
+        self.initialpause = kwargs.get("initial_pause", 0.9)  # default value if not provided
 
         birthArray[0] = 0
         birthArray[-1] = 0
@@ -101,9 +101,17 @@ class LEFTranslocator:
 
             cur1, cur2 = self.LEFs[i]
 
+            # Use initial_pause if legs are adjacent
+            if cur2 - cur1 == 1:
+                pause1 = self.initialpause
+                pause2 = self.initialpause
+            else:
+                pause1 = self.pause[cur1]
+                pause2 = self.pause[cur2]
+
             if self.stalled[i, 0] == 0:
                 if self.occupied[cur1 - 1] == 0:
-                    pause1 = self.pause[cur1]
+                    #pause1 = self.pause[cur1]
 
                     if np.random.random() > pause1:
                         self.occupied[cur1 - 1] = 1
@@ -113,7 +121,7 @@ class LEFTranslocator:
 
             if self.stalled[i, 1] == 0:
                 if self.occupied[cur2 + 1] == 0:
-                    pause2 = self.pause[cur2]
+                    #pause2 = self.pause[cur2]
 
                     if np.random.random() > pause2:
                         self.occupied[cur2 + 1] = 1
