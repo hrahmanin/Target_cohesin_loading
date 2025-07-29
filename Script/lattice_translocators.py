@@ -11,7 +11,7 @@ class LEFTranslocator:
         pauseProb,
         stallProbLeft,
         stallProbRight,
-        *args
+        **kwargs
     ):
         self.numSite = len(birthArray)
         self.numLEF = numLEF
@@ -22,7 +22,7 @@ class LEFTranslocator:
         self.deathProb = deathProb
         self.pause = pauseProb
 
-        self.initial_pause = args[0] if len(args) >= 1 else 0 
+        self.initial_pause = kwargs.get("initial_pause", 0.5)  # default value if not provided
 
         birthArray[0] = 0
         birthArray[-1] = 0
@@ -143,7 +143,7 @@ class LEFTranslocatorDynamicBoundary(LEFTranslocator):
         stallProbRight,
         ctcfDeathProb,
         ctcfBirthProb,
-        *args,
+        **kwargs,
         initalize_at_equilibrium_occupancy=True ,
     ):
         self.ctcfDeathProb = ctcfDeathProb
