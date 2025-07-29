@@ -28,10 +28,11 @@ setup(
     name="dynamic-extrusion-boundaries",
     version=VERSION,
     description=DESCRIPTION,
-    url="https://github.com/Fudenberg-Research-Group/dynamic_extrusion_boundaries",
+    #url="https://github.com/Fudenberg-Research-Group/dynamic_extrusion_boundaries",
+    url="https://github.com/hrahmanin/Target_cohesin_loading/",
     author="Hadi Rahmaninejad",
     author_email="rahmanin@usc.edu",
     license="MIT",
-    packages=find_packages(),
+    packages=find_packages(include=["target_cohesin", "target_cohesin.*"]),
     install_requires=install_requires
 )
