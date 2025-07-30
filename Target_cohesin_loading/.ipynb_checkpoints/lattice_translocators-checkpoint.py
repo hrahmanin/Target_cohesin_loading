@@ -151,8 +151,8 @@ class LEFTranslocatorDynamicBoundary(LEFTranslocator):
         stallProbRight,
         ctcfDeathProb,
         ctcfBirthProb,
-        **kwargs,
         initalize_at_equilibrium_occupancy=True ,
+        **kwargs,  
     ):
         self.ctcfDeathProb = ctcfDeathProb
         self.ctcfBirthProb = ctcfBirthProb
