@@ -8,10 +8,10 @@ class LEFTranslocator:
         stalledDeathProb,
         birthArray,
         pauseProb,
+        ipauseProb,
         stallProbLeft,
         stallProbRight,
         *args, 
-        **kwargs
     ):
         self.numSite = len(birthArray)
         self.numLEF = numLEF
@@ -22,7 +22,8 @@ class LEFTranslocator:
         self.deathProb = deathProb
         self.pause = pauseProb
 
-        self.initialpause = kwargs.get("LEF_ipause", 0.9)  # default value if not provided
+        self.ipause = ipauseProb
+        #self.initialpause = kwargs.get("LEF_ipause", 0.9)  # default value if not provided
 
         birthArray[0] = 0
         birthArray[-1] = 0
@@ -103,8 +104,8 @@ class LEFTranslocator:
 
             # Use initial_pause if legs are adjacent
             if cur2 - cur1 == 1:
-                pause1 = self.initialpause
-                pause2 = self.initialpause
+                pause1 = self.ipause[cur1]
+                pause2 = self.ipause[cur2]
             else:
                 pause1 = self.pause[cur1]
                 pause2 = self.pause[cur2]
@@ -147,6 +148,7 @@ class LEFTranslocatorDynamicBoundary(LEFTranslocator):
         stalledDeathProb,
         birthArray,
         pauseProb,
+        ipauseProb,
         stallProbLeft,
         stallProbRight,
         ctcfDeathProb,
@@ -166,10 +168,10 @@ class LEFTranslocatorDynamicBoundary(LEFTranslocator):
             stalledDeathProb,
             birthArray,
             pauseProb,
+            ipauseProb,
             stallProbLeft,
             stallProbRight,
             *args,
-            **kwargs
         )
 
         if initalize_at_equilibrium_occupancy:

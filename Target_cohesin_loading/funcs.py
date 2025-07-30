@@ -63,6 +63,7 @@ def make_LEF_arrays(site_types,
                     LEF_stalled_lifetime,
                     LEF_birth,
                     LEF_pause,
+                    LEF_ipause,
                     sites_per_monomer,
                     velocity_multiplier,
                     **kwargs):
@@ -71,12 +72,15 @@ def make_LEF_arrays(site_types,
     stalled_lifetime_array = make_site_array(site_types, LEF_stalled_lifetime, **kwargs)
     
     birth_array = make_site_array(site_types, LEF_birth, **kwargs)
+    
     pause_array = make_site_array(site_types, LEF_pause, **kwargs)
+    ipause_array = make_site_array(site_types, LEF_ipause, **kwargs)
+
     
     death_array = 1./ lifetime_array / (velocity_multiplier * sites_per_monomer)
     stalled_death_array = 1./ stalled_lifetime_array / (velocity_multiplier * sites_per_monomer)
 
-    return [death_array, stalled_death_array, birth_array, pause_array]
+    return [death_array, stalled_death_array, birth_array, pause_array,ipause_array]
 
 def make_translocator(extrusion_engine, 
                       site_types,
@@ -105,10 +109,8 @@ def make_translocator(extrusion_engine,
     
     CTCF_arrays = make_CTCF_arrays(site_types, CTCF_left_positions, CTCF_right_positions, **kwargs)
     CTCF_dynamic_arrays = make_CTCF_dynamic_arrays(site_types, **kwargs)
-    # pick what to forward
-    allowed_engine_kwargs = ['LEF_ipause', 'initalize_at_equilibrium_occupancy']
-    optional_args_for_engine = {key: kwargs[key] for key in allowed_engine_kwargs if key in kwargs}
-    LEFTran = extrusion_engine(number_of_LEFs, *LEF_arrays, *CTCF_arrays, *CTCF_dynamic_arrays, **optional_args_for_engine)
+
+    LEFTran = extrusion_engine(number_of_LEFs, *LEF_arrays, *CTCF_arrays, *CTCF_dynamic_arrays)
 
     if not isinstance(LEFTran, LEFTranslocatorDynamicBoundary):
         LEFTran.stallProbLeft = 1 - (1 - LEFTran.stallProbLeft) ** (1. / velocity_multiplier)
