@@ -110,7 +110,7 @@ def make_translocator(extrusion_engine,
     for key in ['LEF_ipause']:  
         if key in kwargs:
             optional_args_for_engine[key] = kwargs.pop(key)
-    LEFTran = extrusion_engine(number_of_LEFs, *LEF_arrays, *CTCF_arrays, *CTCF_dynamic_arrays, ****optional_args_for_engine)
+    LEFTran = extrusion_engine(number_of_LEFs, *LEF_arrays, *CTCF_arrays, *CTCF_dynamic_arrays, **optional_args_for_engine)
 
     if not isinstance(LEFTran, LEFTranslocatorDynamicBoundary):
         LEFTran.stallProbLeft = 1 - (1 - LEFTran.stallProbLeft) ** (1. / velocity_multiplier)
