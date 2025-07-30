@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class LEFTranslocator:
     def __init__(
         self,
@@ -11,7 +10,7 @@ class LEFTranslocator:
         pauseProb,
         stallProbLeft,
         stallProbRight,
-        *args,
+        *args, 
         **kwargs
     ):
         self.numSite = len(birthArray)
