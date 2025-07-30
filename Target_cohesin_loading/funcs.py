@@ -107,7 +107,7 @@ def make_translocator(extrusion_engine,
     CTCF_dynamic_arrays = make_CTCF_dynamic_arrays(site_types, **kwargs)
     # pick what to forward
     optional_args_for_engine = {}
-    for key in ['initial_pause']:  
+    for key in ['LEF_ipause']:  
         if key in kwargs:
             optional_args_for_engine[key] = kwargs.pop(key)
     LEFTran = extrusion_engine(number_of_LEFs, *LEF_arrays, *CTCF_arrays, *CTCF_dynamic_arrays, ****optional_args_for_engine)

@@ -22,7 +22,7 @@ class LEFTranslocator:
         self.deathProb = deathProb
         self.pause = pauseProb
 
-        self.initialpause = kwargs.get("initial_pause", 0.9)  # default value if not provided
+        self.initialpause = kwargs.get("LEF_ipause", 0.9)  # default value if not provided
 
         birthArray[0] = 0
         birthArray[-1] = 0
