@@ -1,4 +1,5 @@
-import numpy as np
+import numpy as np                    
+
 
 class LEFTranslocator:
     def __init__(
@@ -11,7 +12,7 @@ class LEFTranslocator:
         ipauseProb,
         stallProbLeft,
         stallProbRight,
-        *args, 
+        *args
     ):
         self.numSite = len(birthArray)
         self.numLEF = numLEF
@@ -21,9 +22,8 @@ class LEFTranslocator:
 
         self.deathProb = deathProb
         self.pause = pauseProb
-
+        
         self.ipause = ipauseProb
-        #self.initialpause = kwargs.get("LEF_ipause", 0.9)  # default value if not provided
 
         birthArray[0] = 0
         birthArray[-1] = 0
@@ -101,9 +101,8 @@ class LEFTranslocator:
                 self.stalled[i, 1] = 1
 
             cur1, cur2 = self.LEFs[i]
-
             # Use initial_pause if legs are adjacent
-            if cur2 - cur1 == 1:
+            if cur1 == cur2 or cur1 + 1 == cur2:
                 pause1 = self.ipause[cur1]
                 pause2 = self.ipause[cur2]
             else:
@@ -134,6 +133,7 @@ class LEFTranslocator:
         self.LEF_step()
         self.LEF_death()
         
+
     def steps(self, N):
         for _ in range(N):
             self.step()
@@ -154,7 +154,7 @@ class LEFTranslocatorDynamicBoundary(LEFTranslocator):
         ctcfDeathProb,
         ctcfBirthProb,
         *args,
-        initalize_at_equilibrium_occupancy=True , 
+        initalize_at_equilibrium_occupancy=True ,
     ):
         self.ctcfDeathProb = ctcfDeathProb
         self.ctcfBirthProb = ctcfBirthProb

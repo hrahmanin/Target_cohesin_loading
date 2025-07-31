@@ -37,7 +37,7 @@ def make_CTCF_arrays(site_types,
     stall_right_array = make_site_array(site_types, CTCF_facestall, at_ids=CTCF_right_positions, **kwargs)
     
     stall_left_array += make_site_array(site_types, CTCF_backstall, at_ids=CTCF_right_positions, **kwargs)
-    stall_right_array += make_site_array(site_types, CTCF_backstall, at_ids=CTCF_left_positions, **kwargs)
+    stall_right_array += make_site_array(site_types, CTCF_backstall, at_idsids=CTCF_left_positions, **kwargs)
     
     return [stall_left_array, stall_right_array]
 
@@ -72,15 +72,13 @@ def make_LEF_arrays(site_types,
     stalled_lifetime_array = make_site_array(site_types, LEF_stalled_lifetime, **kwargs)
     
     birth_array = make_site_array(site_types, LEF_birth, **kwargs)
-    
     pause_array = make_site_array(site_types, LEF_pause, **kwargs)
     ipause_array = make_site_array(site_types, LEF_ipause, **kwargs)
-
     
     death_array = 1./ lifetime_array / (velocity_multiplier * sites_per_monomer)
     stalled_death_array = 1./ stalled_lifetime_array / (velocity_multiplier * sites_per_monomer)
 
-    return [death_array, stalled_death_array, birth_array, pause_array,ipause_array]
+    return [death_array, stalled_death_array, birth_array, pause_array, ipause_array]
 
 def make_translocator(extrusion_engine, 
                       site_types,
