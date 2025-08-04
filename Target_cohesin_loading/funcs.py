@@ -116,12 +116,31 @@ def make_translocator(extrusion_engine,
 
     return LEFTran
 
-def paramdict_to_filename(paramdictx,paramdict_keys):
+def paramdict_to_filename(paramdict, paramdict_keys):
+    filename = 'file'
+    for key, value in paramdict.items():
+        short_key = paramdict_keys.get(key, key)  # fallback to key if not in paramdict_keys
+        if isinstance(value, list):
+            value_str = '_'.join(str(v) for v in value)
+        else:
+            value_str = str(value)
+        filename += f'_{short_key}_{value_str}'
     
-    filename='file'
-    for i in range(len(paramdictx)):
-        filename += ('_'+paramdict_keys[list(paramdictx)[i][:]]+'_'+str(paramdictx[list(paramdictx)[i]]))
-    chars = ['[',']']
-    filename_new = ''.join(i for i in filename if not i in chars)    
-    return filename_new
+    filename = filename.replace('[', '').replace(']', '').replace(' ', '')
+    return filename
+def adjust_LEF_density(paramdict, base_loading=0.0001):
+    """
+    Computes adjusted LEF_separation based on new loading on target.
+    Returns an integer value for the updated LEF_separation.
+    """
+    birth = paramdict['LEF_birth'][1] if isinstance(paramdict['LEF_birth'], list) else paramdict['LEF_birth']
+    monomers_per_replica = int(paramdict['monomers_per_replica'])
+    sites_per_monomer = int(paramdict['sites_per_monomer'])
+    number_of_replica = int(paramdict['number_of_replica'])
+
+    total_sites = monomers_per_replica * sites_per_monomer * number_of_replica
+    density_multiplier = 1 + (((birth - base_loading) / base_loading) / total_sites)
+    
+    return int(paramdict['LEF_separation'] / density_multiplier)
+
 
