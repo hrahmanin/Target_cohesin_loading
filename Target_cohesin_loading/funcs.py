@@ -116,18 +116,54 @@ def make_translocator(extrusion_engine,
 
     return LEFTran
 
-def paramdict_to_filename(paramdict, paramdict_keys):
+#def paramdict_to_filename(paramdict, paramdict_keys):
+#    filename = 'file'
+#    for key, value in paramdict.items():
+#        short_key = paramdict_keys.get(key, key)  # fallback to key if not in paramdict_keys
+#        if isinstance(value, list):
+#            value_str = '_'.join(str(v) for v in value)
+#        else:
+#            value_str = str(value)
+#        filename += f'_{short_key}_{value_str}'
+#    
+#    filename = filename.replace('[', '').replace(']', '').replace(' ', '')
+#    return filename
+def paramdict_to_filename(paramdict, paramdict_keys=None):
+    if paramdict_keys is None:
+        paramdict_keys = {
+            'CTCF_facestall':'face',
+            'CTCF_backstall':'back',
+            'CTCF_lifetime':'clife',
+            'CTCF_offtime':'cof',
+            'CTCF_number':'cnum',
+            'LEF_lifetime':'life',
+            'LEF_stalled_lifetime':'slife',
+            'LEF_birth':'birth',
+            'targetsnum':'targetsnum',
+            'deltactcf':'deltactcf',
+            'LEF_ipause':'ipause',
+            'LEF_pause':'pause',
+            'LEF_separation':'sep',
+            'sites_per_monomer':'site',
+            'monomers_per_replica':'monomer',
+            'number_of_replica':'replica',
+            'steps':'steps',
+            'velocity_multiplier':'vel'
+        }
+
     filename = 'file'
     for key, value in paramdict.items():
-        short_key = paramdict_keys.get(key, key)  # fallback to key if not in paramdict_keys
+        short_key = paramdict_keys.get(key, key)  # fallback if not found
         if isinstance(value, list):
             value_str = '_'.join(str(v) for v in value)
         else:
             value_str = str(value)
         filename += f'_{short_key}_{value_str}'
-    
+
+    # Remove characters that might interfere with file naming
     filename = filename.replace('[', '').replace(']', '').replace(' ', '')
     return filename
+
 def adjust_LEF_density(paramdict, base_loading=0.0001):
     """
     Computes adjusted LEF_separation based on new loading on target.
