@@ -15,10 +15,9 @@ Preprint available here: <>
 
 ### Structure of the repository
 The structure of this repository follows as below:
-- inputs : simulated and experimental data.
-- output : files after processing and analyzing the input data.
-- analysis: notebooks and code for analyzing simulations and experimental data.
-- scripts: codes for performing simulations.
+- Analysis: notebooks and code for analyzing simulations and experimental data.
+- Scripts: codes for performing simulations.
+- Target_Cohesin_Loading: accessory script for the simulations
   
 ### Requirements
 - *Polychrom*: A toolkit for polymer simulations. (https://github.com/open2c/polychrom)
@@ -39,24 +38,24 @@ pip install -e .
 
 ### Workflow
 #### Running simulations 
-See `./scripts/simulations` for relevant code. 
-1. One-Dimensional Lattice Simulation: Parameters such as the lifetime, velocity, and density of extruders can be adjusted in the configuration file located at `scripts/simulations/simulation_1d.py`. Barriers can be specified as either dynamic or static barriers, and adjust their parameters such as binding time, unbound time, and/or the occupancy. 
+See `./scripts` for relevant code. 
+1. One-Dimensional Lattice Simulation: Parameters such as the lifetime, velocity, and density of extruders can be adjusted in the configuration file located at `scripts/simulation.py`. The target loading size and the loading rate relevant to the other sites can be determined. Barriers are specified as dynamic barriers, and their parameters such as binding time, unbound time, and/or the occupancy can be adjusted. 
 
 2. Run the coarse-grained molecular dynamics simulations to model loop extrusion. Uses extruder positions from 1D lattice simulations as an input. 
 
 #### Processing simulation data
-After running the simulations, the simulated trajectories can be processed to generate *in silico* ChIP-seq profiles, contact maps, and microscopy images. Scripts for data processing available in `./scripts/processing`. Instructions are provided with the relevant python code.
+After running the simulations, the simulated trajectories can be processed to generate *in silico* ChIP-seq profiles, and contact maps. Scripts for data processing available in notebooks in`./Analysis`. Instructions are provided with the relevant python code.
 
 #### Analysis
 Once the data is processed, observable features can be quantified, including:
 
-<!--- FRiP (Fraction of Reads in Peaks)
-- TADs (Topologically Associating Domains)
+- FRiP (Fraction of Reads in Peaks)
+<!---- TADs (Topologically Associating Domains)
 - Dots (loops between barriers)
 - Vermicelli (accumulation of extruders on axial structures)
 - P(s): contact frequency vs genomic distance-->
   
-See Jupyter notebooks in `./analysis`.
+See Jupyter notebooks in `./Analysis`.
 
 
 
