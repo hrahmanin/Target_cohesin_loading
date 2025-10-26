@@ -23,6 +23,7 @@ The structure of this repository follows as below:
 - *Polychrom*: A toolkit for polymer simulations. (https://github.com/open2c/polychrom)
 - *OpenMM*: A library for molecular simulations. (https://github.com/openmm/openmm)
 - *Open2C* analysis packages (see https://github.com/open2c)
+- *Chromoscores* analysis package for Hi-C maps (see https://github.com/hrahmanin/chromoscores)
 
   
 ## Installation
