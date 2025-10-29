@@ -1,6 +1,6 @@
 # Target chromatin loop extrusion with dynamic boundaries
 
-![Alt Text](Analysis/output/output_croppedm_.gif)
+![Alt Text](Analysis/output/output_croppeds_.gif)
 
 **Illustration**: This gif demonstrates how extruders (yellow) are loaded at targets, and start extrusion.
 <!--
