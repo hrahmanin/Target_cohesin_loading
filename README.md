@@ -15,9 +15,12 @@ Preprint available here: <>
 
 ### Structure of the repository
 The structure of this repository follows as below:
-- Analysis: notebooks and code for analyzing simulations and experimental data.
-- Scripts: codes for performing simulations.
-- Target_Cohesin_Loading: accessory script for the simulations
+- Analysis: notebooks and code for analyzing simulations and experimental data. This includes:
+      - Target Cohesin Loading: Single site, Multiple site, and domains
+      - Sequential Barriers
+      - Realistic Distribution of Barriers
+- Scripts: codes for performing simulations, and quantitative analysis.
+- Target_Cohesin_Loading: accessory scripts for the simulations
   
 ### Requirements
 - *Polychrom*: A toolkit for polymer simulations. (https://github.com/open2c/polychrom)
